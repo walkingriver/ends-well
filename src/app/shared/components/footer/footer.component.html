@@ -1,3 +1,51 @@
 <footer class="footer">
-  <p>&copy; {{ year }} Ends Well</p>
+  <div class="footer-content">
+    <section class="newsletter" aria-labelledby="newsletter-heading">
+      <h2 id="newsletter-heading">Newsletter</h2>
+      <p>Get updates when we add new series with great endings.</p>
+
+      <form
+        #subscribeForm="ngForm"
+        class="newsletter-form"
+        (ngSubmit)="onSubscribe(subscribeForm)"
+        novalidate
+      >
+        <mat-form-field appearance="outline" class="email-field">
+          <mat-label>Email address</mat-label>
+          <input
+            matInput
+            type="email"
+            name="email"
+            required
+            email
+            [(ngModel)]="subscribeEmail"
+            #emailField="ngModel"
+            autocomplete="email"
+          />
+          @if (emailField.invalid && (emailField.dirty || emailField.touched)) {
+            @if (emailField.errors?.['required']) {
+              <mat-error>Email is required</mat-error>
+            } @else if (emailField.errors?.['email']) {
+              <mat-error>Enter a valid email address</mat-error>
+            }
+          }
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="subscribeForm.invalid"
+        >
+          Subscribe
+        </button>
+
+        @if (subscribeSuccess) {
+          <p class="success-message" role="status">Thanks — you're on the list!</p>
+        }
+      </form>
+    </section>
+  </div>
+
+  <p class="copyright">&copy; {{ year }} Ends Well</p>
 </footer>
