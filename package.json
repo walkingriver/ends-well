@@ -2,15 +2,10 @@
   "name": "ends-well",
   "version": "0.0.0",
   "scripts": {
-    "prepare": "node scripts/ensure-dev-environment.mjs",
     "ng": "ng",
     "start": "ng serve",
-    "start:live": "concurrently -k -n proxy,web -c blue,green \"npm run proxy\" \"ng serve --proxy-config proxy.conf.json\"",
-    "proxy": "node proxy/server.mjs",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "serve:prod": "ng serve --configuration production",
-    "deploy": "npm run build && npx wrangler pages deploy dist/ends-well/browser --project-name=ends-well --branch=main"
+    "watch": "ng build --watch --configuration development"
   },
   "engines": {
     "node": ">=22.22.3"
@@ -32,7 +27,6 @@
     "@angular/build": "22.0.5",
     "@angular/cli": "22.0.5",
     "@angular/compiler-cli": "22.0.5",
-    "concurrently": "^9.2.1",
     "typescript": "~6.0.3"
   }
 }

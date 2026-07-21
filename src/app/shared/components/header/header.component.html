@@ -1,49 +1,8 @@
-<mat-toolbar color="primary" class="header-toolbar">
-  <div class="container">
-    <div class="logo-container">
-      <a routerLink="/" class="logo">Ends Well</a>
-    </div>
-    
-    <!-- Desktop Navigation -->
-    <nav class="desktop-nav">
-      @for (item of navItems; track item.path) {
-        <a
-          [routerLink]="item.path"
-          mat-button
-          class="nav-link"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact: true}">
-          {{ item.label }}
-        </a>
-      }
-    </nav>
-    
-    <!-- Mobile Menu Button -->
-    <button 
-      mat-icon-button 
-      class="menu-button" 
-      (click)="toggleMenu()"
-      aria-label="Toggle menu">
-      <mat-icon>menu</mat-icon>
-    </button>
-  </div>
+<mat-toolbar color="primary">
+  <a routerLink="/" class="brand" aria-label="Go to home page">
+    <mat-icon>movie</mat-icon>
+    Ends Well
+  </a>
+  <span class="spacer"></span>
+  <a mat-button routerLink="/">Home</a>
 </mat-toolbar>
-
-<!-- Mobile Menu -->
-<div class="mobile-menu" [class.open]="isMenuOpen">
-  <div class="container">
-    <nav class="mobile-nav">
-      @for (item of navItems; track item.path) {
-        <a
-          [routerLink]="item.path"
-          mat-button
-          class="mobile-nav-link"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact: true}"
-          (click)="isMenuOpen = false">
-          {{ item.label }}
-        </a>
-      }
-    </nav>
-  </div>
-</div>
