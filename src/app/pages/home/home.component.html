@@ -1,0 +1,28 @@
+<div class="home-container">
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Ends Well</h1>
+      <p class="subtitle">Discover TV series with satisfying conclusions</p>
+      <button mat-raised-button color="primary" routerLink="/series" class="cta-button">
+        Browse All Series
+      </button>
+    </div>
+  </section>
+
+  <section class="featured">
+    <h2>Top Rated Series That End Well</h2>
+    <div class="series-grid">
+      @for (item of featuredSeries; track item.id) {
+        <app-series-card [series]="item" />
+      }
+    </div>
+  </section>
+
+  <section class="about">
+    <h2>Why Endings Matter</h2>
+    <p>
+      A great series deserves a great ending. We highlight shows that stick the landing —
+      quality entertainment from start to finish.
+    </p>
+  </section>
+</div>
