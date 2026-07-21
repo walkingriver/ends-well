@@ -1,9 +1,48 @@
-<mat-toolbar color="primary">
-  <a routerLink="/" class="brand" aria-label="Go to home page">
+<mat-toolbar color="primary" class="header-toolbar">
+  <a routerLink="/" class="brand" aria-label="Go to home page" (click)="closeMenu()">
     <mat-icon>movie</mat-icon>
     Ends Well
   </a>
+
   <span class="spacer"></span>
-  <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-  <a mat-button routerLink="/series" routerLinkActive="active">Browse</a>
+
+  <nav class="desktop-nav" aria-label="Main navigation">
+    @for (item of navItems; track item.path) {
+      <a
+        mat-button
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+      >
+        {{ item.label }}
+      </a>
+    }
+  </nav>
+
+  <button
+    mat-icon-button
+    class="menu-button"
+    type="button"
+    aria-label="Toggle menu"
+    [attr.aria-expanded]="isMenuOpen()"
+    (click)="toggleMenu()"
+  >
+    <mat-icon>{{ isMenuOpen() ? 'close' : 'menu' }}</mat-icon>
+  </button>
 </mat-toolbar>
+
+@if (isMenuOpen()) {
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    @for (item of navItems; track item.path) {
+      <a
+        mat-button
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+        (click)="closeMenu()"
+      >
+        {{ item.label }}
+      </a>
+    }
+  </nav>
+}

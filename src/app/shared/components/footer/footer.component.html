@@ -1,5 +1,21 @@
 <footer class="footer">
-  <div class="footer-content">
+  <div class="footer-grid">
+    <section class="footer-about">
+      <h2>Ends Well</h2>
+      <p>Discover TV series with satisfying conclusions.</p>
+    </section>
+
+    <section class="footer-links" aria-labelledby="footer-links-heading">
+      <h2 id="footer-links-heading">Quick links</h2>
+      <ul>
+        @for (link of footerLinks; track link.path) {
+          <li>
+            <a [routerLink]="link.path">{{ link.label }}</a>
+          </li>
+        }
+      </ul>
+    </section>
+
     <section class="newsletter" aria-labelledby="newsletter-heading">
       <h2 id="newsletter-heading">Newsletter</h2>
       <p>Get updates when we add new series with great endings.</p>

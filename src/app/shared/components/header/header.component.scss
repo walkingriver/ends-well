@@ -1,3 +1,9 @@
+.header-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
 .brand {
   text-decoration: none;
   color: inherit;
@@ -17,6 +23,33 @@
   flex: 1 1 auto;
 }
 
+.desktop-nav {
+  display: none;
+  gap: 0.25rem;
+}
+
+.menu-button {
+  display: inline-flex;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  background: var(--mat-toolbar-container-background-color, #3f51b5);
+}
+
 a.active {
   background: rgba(255, 255, 255, 0.15);
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+  }
+
+  .menu-button,
+  .mobile-nav {
+    display: none;
+  }
 }
