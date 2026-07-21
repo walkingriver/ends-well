@@ -17,17 +17,29 @@
   }
 }
 
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.search-field {
+  flex: 1;
+  min-width: 220px;
+  max-width: 400px;
+}
+
+.sort-field {
+  width: 200px;
+}
+
 .series-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1.5rem;
-}
-
-.search-field {
-  width: 100%;
-  max-width: 400px;
-  display: block;
-  margin: 0 auto 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .empty-state {

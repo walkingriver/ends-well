@@ -4,22 +4,45 @@
     <p>Browse our curated collection of shows that stick the landing.</p>
   </header>
 
-  <mat-form-field appearance="outline" class="search-field">
-    <mat-label>Search series</mat-label>
-    <input
-      matInput
-      [ngModel]="searchQuery()"
-      (ngModelChange)="searchQuery.set($event)"
-      placeholder="Search by title or genre"
-    />
-    <mat-icon matSuffix>search</mat-icon>
-  </mat-form-field>
+  <div class="controls">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search series</mat-label>
+      <input
+        matInput
+        [ngModel]="searchQuery()"
+        (ngModelChange)="onSearchChange($event)"
+        placeholder="Search by title or genre"
+      />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="sort-field">
+      <mat-label>Sort by</mat-label>
+      <mat-select [value]="currentSort()" (selectionChange)="onSortChange($event.value)">
+        @for (option of sortOptions; track option.value) {
+          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
 
   <div class="series-grid">
-    @for (item of filteredSeries(); track item.id) {
+    @for (item of paginatedSeries(); track item.id) {
       <app-series-card [series]="item" />
     } @empty {
       <p class="empty-state">No series match "{{ searchQuery() }}".</p>
     }
   </div>
+
+  @if (sortedSeries().length > 0) {
+    <mat-paginator
+      [length]="sortedSeries().length"
+      [pageSize]="pageSize()"
+      [pageIndex]="pageIndex()"
+      [pageSizeOptions]="[3, 6, 12]"
+      (page)="onPageChange($event)"
+      showFirstLastButtons
+      aria-label="Select page"
+    />
+  }
 </div>
