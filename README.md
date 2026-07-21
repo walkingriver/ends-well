@@ -88,6 +88,23 @@ Deploy to Cloudflare Pages:
 npm run deploy
 ```
 
+## PWA icons and splash screens
+
+Custom icons and iOS splash assets live on `ends-well-pwa` and `ends-well-updates`.
+The source artwork is `src/assets/icons/icon-512x512.png`.
+
+Regenerate after you change that file:
+
+```bash
+npm install
+# macOS: point Puppeteer at system Chrome if bundled Chromium fails
+export PUPPETEER_EXECUTABLE_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+
+npm run icons    # manifest icons, apple-touch-icon, favicon
+npm run splash   # iOS startup images under src/assets/splash/
+npm run build
+```
+
 ## Maintainer scripts
 
 ```bash
