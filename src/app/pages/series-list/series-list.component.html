@@ -4,9 +4,22 @@
     <p>Browse our curated collection of shows that stick the landing.</p>
   </header>
 
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Search series</mat-label>
+    <input
+      matInput
+      [ngModel]="searchQuery()"
+      (ngModelChange)="searchQuery.set($event)"
+      placeholder="Search by title or genre"
+    />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
   <div class="series-grid">
-    @for (item of allSeries; track item.id) {
+    @for (item of filteredSeries(); track item.id) {
       <app-series-card [series]="item" />
+    } @empty {
+      <p class="empty-state">No series match "{{ searchQuery() }}".</p>
     }
   </div>
 </div>

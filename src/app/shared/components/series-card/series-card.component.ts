@@ -11,6 +11,7 @@ export interface FeaturedSeries {
   yearEnded?: number;
   averageRating: number;
   posterPath: string;
+  genres?: string[];
 }
 
 @Component({
