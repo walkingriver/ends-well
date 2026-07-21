@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
+import { RatingsService } from '../../services/ratings';
 
 export interface SeriesDetail {
   id: string;
@@ -29,9 +30,11 @@ export interface SeriesDetail {
 })
 export class SeriesDetailComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
+  private readonly ratingsService = inject(RatingsService);
 
   series = signal<SeriesDetail | null>(null);
   notFound = signal(false);
+  userEndedWell = signal<boolean | null>(null);
 
   private readonly catalog: SeriesDetail[] = [
     {
@@ -139,5 +142,20 @@ export class SeriesDetailComponent implements OnInit {
     const found = this.catalog.find((s) => s.id === id) ?? null;
     this.series.set(found);
     this.notFound.set(!found);
+
+    if (found) {
+      this.userEndedWell.set(this.ratingsService.getEndedWell(found.id));
+    }
+  }
+
+  onEndedWellChange(value: boolean): void {
+    const current = this.series();
+    if (!current) {
+      return;
+    }
+
+    const next = this.userEndedWell() === value ? null : value;
+    this.userEndedWell.set(next);
+    this.ratingsService.setEndedWell(current.id, next);
   }
 }
