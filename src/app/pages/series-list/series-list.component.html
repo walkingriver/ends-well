@@ -1,0 +1,12 @@
+<div class="series-list-container">
+  <header class="page-header">
+    <h1>TV Series with Great Endings</h1>
+    <p>Browse our curated collection of shows that stick the landing.</p>
+  </header>
+
+  <div class="series-grid">
+    @for (item of allSeries; track item.id) {
+      <app-series-card [series]="item" />
+    }
+  </div>
+</div>
