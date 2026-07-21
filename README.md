@@ -23,16 +23,20 @@ Open <http://localhost:4200>. The app runs on **mock data** by default.
 
 ## Teaching branches
 
-| Branch | Use when |
-|--------|----------|
-| `ends-well-no-pwa` | Starting the book (before `ng add @angular/pwa`) |
-| `ends-well-pwa` | After adding PWA support |
-| `ends-well-updates` | Updates chapters (`SwUpdate` UI) |
+| Branch / tag | Use when |
+|--------------|----------|
+| `ends-well-no-pwa` | PWA book: before `ng add @angular/pwa` |
+| `ends-well-pwa` | PWA book: after adding PWA support |
+| `ends-well-updates` | PWA book: updates chapters (`SwUpdate` UI) |
+| **Angular Apprentice** | Build Ends Well from scratch; mock data default ch. 10–16; live TMDb ch. 17a–18; deploy ch. 21 (`npm run deploy`) |
+| `apprentice-ch08-end` … `apprentice-ch18-end` | Compare your work at the end of each Apprentice chapter |
+| `apprentice-ch21-end` | Production build deployed to Cloudflare Pages (code still `ends-well-no-pwa`) |
 
 ```bash
-git checkout ends-well-no-pwa   # chapter 5
-git checkout ends-well-pwa      # chapter 9+
-git checkout ends-well-updates  # chapter 15+
+git checkout ends-well-no-pwa   # PWA book ch. 5
+git checkout ends-well-pwa      # PWA book ch. 9+
+git checkout ends-well-updates  # PWA book ch. 15+
+git tag -l 'apprentice-ch*'     # Apprentice chapter checkpoints
 ```
 
 ## Live TMDb data (optional)
