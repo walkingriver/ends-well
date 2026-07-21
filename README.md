@@ -15,7 +15,7 @@ Angular 22 · Angular Material · standalone components · optional TMDb integra
 git clone https://github.com/walkingriver/ends-well.git
 cd ends-well
 git checkout ends-well-no-pwa
-npm install
+npm install          # creates environment.development.ts from the example when missing
 npm start
 ```
 

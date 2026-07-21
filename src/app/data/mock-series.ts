@@ -4,7 +4,7 @@ import { TvSeries } from '../models/tv-series.model';
  * Placeholder images for series without TMDb URLs.
  *
  * TODO: These placeholder URLs will be replaced with real TMDb image paths
- * once we connect to the TMDb API. See Chapter XX for instructions on
+ * once we connect to the TMDb API. See Chapter 5 for instructions on
  * obtaining your own API key from https://www.themoviedb.org/settings/api
  */
 const posterPlaceholder = (title: string) =>
