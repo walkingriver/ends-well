@@ -1,34 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogModule,
-} from '@angular/material/dialog';
-import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
-import { filter } from 'rxjs/operators';
-
-@Component({
-  selector: 'app-update-dialog',
-  imports: [MatDialogModule, MatButtonModule],
-  template: `
-    <h2 mat-dialog-title>Update available</h2>
-    <mat-dialog-content>
-      <p>{{ data.message }}</p>
-    </mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button mat-button [mat-dialog-close]="false">Later</button>
-      <button mat-button color="primary" [mat-dialog-close]="true">Update now</button>
-    </mat-dialog-actions>
-  `,
-})
-export class UpdateDialogComponent {
-  readonly data = inject<{ message: string }>(MAT_DIALOG_DATA);
-}
 
 @Component({
   selector: 'app-root',
@@ -38,8 +12,6 @@ export class UpdateDialogComponent {
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatSnackBarModule,
-    MatDialogModule,
   ],
   template: `
     <mat-toolbar color="primary">
@@ -49,9 +21,6 @@ export class UpdateDialogComponent {
       </a>
       <span class="spacer"></span>
       <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Browse</a>
-      @if (updatesEnabled) {
-        <button mat-button type="button" (click)="checkForUpdate()">Check for updates</button>
-      }
     </mat-toolbar>
 
     <main class="main-content">
@@ -103,55 +72,4 @@ export class UpdateDialogComponent {
     }
   `,
 })
-export class AppComponent implements OnInit {
-  private readonly swUpdate = inject(SwUpdate);
-  private readonly snackBar = inject(MatSnackBar);
-  private readonly dialog = inject(MatDialog);
-
-  readonly updatesEnabled = this.swUpdate.isEnabled;
-
-  ngOnInit(): void {
-    if (!this.swUpdate.isEnabled) {
-      return;
-    }
-
-    this.swUpdate.versionUpdates
-      .pipe(filter((event): event is VersionReadyEvent => event.type === 'VERSION_READY'))
-      .subscribe((event) => this.onUpdateAvailable(event));
-  }
-
-  async checkForUpdate(): Promise<void> {
-    if (!this.swUpdate.isEnabled) {
-      return;
-    }
-
-    this.showMessage('Checking for updates...');
-    const updateFound = await this.swUpdate.checkForUpdate();
-    if (!updateFound) {
-      this.showMessage('You are on the latest version.');
-    }
-  }
-
-  private onUpdateAvailable(event: VersionReadyEvent): void {
-    const appData = event.latestVersion.appData as { updateMessage?: string } | undefined;
-    const message = appData?.updateMessage ?? 'A new version is available.';
-
-    const dialogRef = this.dialog.open(UpdateDialogComponent, {
-      data: { message },
-      disableClose: true,
-    });
-
-    dialogRef.afterClosed().subscribe(async (reloadNow: boolean) => {
-      if (!reloadNow) {
-        return;
-      }
-
-      await this.swUpdate.activateUpdate();
-      document.location.reload();
-    });
-  }
-
-  private showMessage(message: string): void {
-    this.snackBar.open(message, 'Close', { duration: 3000 });
-  }
-}
+export class AppComponent {}
