@@ -1,0 +1,58 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Ends Well</h3>
+        <p>Discover TV series with satisfying conclusions. We help you find shows that stick the landing.</p>
+        <div class="social-links">
+          @for (link of socialLinks; track link.icon) {
+            <a [href]="link.url" target="_blank" rel="noopener noreferrer" mat-icon-button>
+              <mat-icon [svgIcon]="link.icon"></mat-icon>
+            </a>
+          }
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          @for (link of footerLinks; track link.path) {
+            <li>
+              <a [routerLink]="link.path">{{ link.label }}</a>
+            </li>
+          }
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Newsletter</h4>
+        <p>Subscribe to get updates on new series and recommendations.</p>
+        <div class="newsletter-form">
+          <input 
+            type="email" 
+            placeholder="Your email address" 
+            class="newsletter-input"
+            #emailInput
+          >
+          <button 
+            mat-raised-button 
+            color="primary" 
+            class="subscribe-button"
+            (click)="onSubscribe(emailInput.value)"
+          >
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; {{ currentYear }} Ends Well. All rights reserved.</p>
+      <div class="legal-links">
+        <a [routerLink]="['/privacy']">Privacy Policy</a>
+        <span>•</span>
+        <a [routerLink]="['/terms']">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>

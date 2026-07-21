@@ -1,0 +1,101 @@
+<div class="series-list-container">
+  <div class="header">
+    <h1>TV Series with Great Endings</h1>
+    <p>Browse our curated collection of TV shows that stick the landing</p>
+  </div>
+
+  <div class="filters">
+    <div class="search-box">
+      <input 
+        type="text" 
+        placeholder="Search series..." 
+        class="search-input"
+        (keyup.enter)="onSearch(searchInput.value)"
+        #searchInput
+      >
+      <button mat-icon-button (click)="onSearch(searchInput.value)">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+    
+    <div class="sort-options">
+      <span>Sort by:</span>
+      @for (option of sortOptions; track option.value) {
+        <button 
+          mat-button 
+          [class.active]="currentSort === option.value"
+          (click)="onSortChange(option.value)"
+        >
+          {{ option.label }}
+        </button>
+      }
+    </div>
+  </div>
+
+  @if (isLoading) {
+    <div class="loading-spinner">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p>Loading series...</p>
+    </div>
+  } @else if (series.length > 0) {
+    <div class="series-grid">
+      @for (seriesItem of series; track seriesItem.id) {
+        <mat-card class="series-card" [routerLink]="['/series', seriesItem.id]" style="cursor: pointer;">
+          <div class="card-image" [style.backgroundImage]="'url(' + seriesItem.image + ')'"></div>
+          <mat-card-content>
+            <h3>{{ seriesItem.title }}</h3>
+            <div class="series-meta">
+              <span class="year">{{ seriesItem.year }}</span>
+              <div class="rating">
+                <mat-icon>star</mat-icon>
+                <span>{{ seriesItem.rating }}</span>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="primary" [routerLink]="['/series', seriesItem.id]">
+              View Details
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+
+    @if (totalPages > 1) {
+      <div class="pagination">
+        <button 
+          mat-button 
+          [disabled]="currentPage === 1"
+          (click)="onPageChange(currentPage - 1)"
+        >
+          Previous
+        </button>
+        
+        @for (page of getPageNumbers(); track page) {
+          <button 
+            mat-button 
+            [class.active]="page === currentPage"
+            (click)="onPageChange(page)"
+            [disabled]="page === '...'"
+          >
+            {{ page }}
+          </button>
+        }
+        
+        <button 
+          mat-button 
+          [disabled]="currentPage === totalPages"
+          (click)="onPageChange(currentPage + 1)"
+        >
+          Next
+        </button>
+      </div>
+    }
+  } @else {
+    <div class="no-results">
+      <mat-icon>search_off</mat-icon>
+      <h3>No series found</h3>
+      <p>Try adjusting your search or filter to find what you're looking for.</p>
+    </div>
+  }
+</div>

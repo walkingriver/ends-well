@@ -1,0 +1,38 @@
+{
+  "name": "ends-well",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "start:live": "concurrently -k -n proxy,web -c blue,green \"npm run proxy\" \"ng serve --proxy-config proxy.conf.json\"",
+    "proxy": "node proxy/server.mjs",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "serve:prod": "ng serve --configuration production",
+    "deploy": "npm run build && npx wrangler pages deploy dist/ends-well/browser --project-name=ends-well"
+  },
+  "engines": {
+    "node": ">=22.22.3"
+  },
+  "dependencies": {
+    "@angular/animations": "22.0.5",
+    "@angular/cdk": "22.0.5",
+    "@angular/common": "22.0.5",
+    "@angular/compiler": "22.0.5",
+    "@angular/core": "22.0.5",
+    "@angular/forms": "22.0.5",
+    "@angular/material": "22.0.5",
+    "@angular/platform-browser": "22.0.5",
+    "@angular/router": "22.0.5",
+    "@angular/service-worker": "22.0.5",
+    "rxjs": "7.8.1",
+    "tslib": "2.6.2"
+  },
+  "devDependencies": {
+    "@angular/build": "22.0.5",
+    "@angular/cli": "22.0.5",
+    "@angular/compiler-cli": "22.0.5",
+    "concurrently": "^9.2.1",
+    "typescript": "~6.0.3"
+  }
+}
