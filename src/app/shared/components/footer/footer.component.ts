@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 interface FooterLink {
   label: string;
@@ -18,14 +19,16 @@ interface FooterLink {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatSnackBarModule,
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
+  private readonly snackBar = inject(MatSnackBar);
+
   year = new Date().getFullYear();
   subscribeEmail = '';
-  subscribeSuccess = false;
 
   readonly footerLinks: FooterLink[] = [
     { label: 'Home', path: '/' },
@@ -37,7 +40,9 @@ export class FooterComponent {
       return;
     }
 
-    this.subscribeSuccess = true;
+    this.snackBar.open("Thanks — you're on the list!", 'Close', {
+      duration: 4000,
+    });
     form.resetForm();
   }
 }
