@@ -3,16 +3,7 @@ import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
-export interface FeaturedSeries {
-  id: string;
-  title: string;
-  yearStarted: number;
-  yearEnded?: number;
-  averageRating: number;
-  posterPath: string;
-  genres?: string[];
-}
+import { TvSeries } from '../../../models/tv-series.model';
 
 @Component({
   selector: 'app-series-card',
@@ -21,5 +12,5 @@ export interface FeaturedSeries {
   styleUrl: './series-card.component.scss',
 })
 export class SeriesCardComponent {
-  @Input({ required: true }) series!: FeaturedSeries;
+  @Input({ required: true }) series!: TvSeries;
 }

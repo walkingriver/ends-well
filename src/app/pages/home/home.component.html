@@ -12,7 +12,7 @@
   <section class="featured">
     <h2>Top Rated Series That End Well</h2>
     <div class="series-grid">
-      @for (item of featuredSeries; track item.id) {
+      @for (item of featuredSeries(); track item.id) {
         <app-series-card [series]="item" />
       }
     </div>
