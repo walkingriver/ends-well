@@ -9,7 +9,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "serve:prod": "ng serve --configuration production",
-    "deploy": "npm run build && npx wrangler pages deploy dist/ends-well/browser --project-name=ends-well",
+    "deploy": "npm run build && npx wrangler pages deploy dist/ends-well/browser --project-name=ends-well --branch=main",
     "icons": "pwa-asset-generator src/assets/icons/icon-512x512.png src/assets/icons --icon-only --favicon -i src/index.html -m public/manifest.webmanifest",
     "splash": "pwa-asset-generator src/assets/icons/icon-512x512.png src/assets/splash --splash-only --background \"#f5f5f5\" -i src/index.html"
   },
