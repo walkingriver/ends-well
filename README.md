@@ -82,7 +82,7 @@ Test production locally:
 npx http-server -p 8080 -c-1 dist/ends-well/browser
 ```
 
-Deploy to Cloudflare Pages:
+Deploy to Cloudflare Pages (production branch `main`, stable `ends-well.pages.dev` URL):
 
 ```bash
 npm run deploy
