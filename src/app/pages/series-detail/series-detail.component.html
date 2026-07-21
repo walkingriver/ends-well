@@ -1,0 +1,49 @@
+<div class="detail-container">
+  @if (notFound()) {
+    <div class="not-found">
+      <mat-icon>error_outline</mat-icon>
+      <p>Series not found.</p>
+      <a mat-raised-button color="primary" routerLink="/series">Back to list</a>
+    </div>
+  } @else if (series(); as s) {
+    <a mat-button routerLink="/series" class="back-link">
+      <mat-icon>arrow_back</mat-icon>
+      Back to list
+    </a>
+
+    <div class="hero" [style.backgroundImage]="'url(' + (s.backdropPath || s.posterPath) + ')'">
+      <div class="hero-overlay">
+        <img [src]="s.posterPath" [alt]="s.title + ' poster'" class="poster" />
+        <div class="hero-text">
+          <h1>{{ s.title }}</h1>
+          <p class="years">{{ s.yearStarted }}–{{ s.yearEnded }}</p>
+          <p class="rating">
+            <mat-icon>star</mat-icon>
+            {{ s.averageRating }}
+          </p>
+          @if (s.network) {
+            <p class="network">{{ s.network }} · {{ s.seasons }} seasons</p>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <mat-chip-set aria-label="Genres">
+        @for (genre of s.genres; track genre) {
+          <mat-chip>{{ genre }}</mat-chip>
+        }
+      </mat-chip-set>
+
+      <p class="description">{{ s.description }}</p>
+
+      @if (s.starring?.length) {
+        <p class="starring"><strong>Starring:</strong> {{ s.starring?.join(', ') }}</p>
+      }
+
+      @if (s.createdBy?.length) {
+        <p class="created-by"><strong>Created by:</strong> {{ s.createdBy?.join(', ') }}</p>
+      }
+    </div>
+  }
+</div>

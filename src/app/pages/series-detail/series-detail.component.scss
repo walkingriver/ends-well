@@ -1,0 +1,79 @@
+.detail-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.back-link {
+  margin-bottom: 1rem;
+}
+
+.not-found {
+  text-align: center;
+  padding: 3rem;
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    color: #666;
+  }
+}
+
+.hero {
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.hero-overlay {
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75));
+  color: white;
+  align-items: flex-end;
+}
+
+.poster {
+  width: 160px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.hero-text {
+  h1 {
+    margin: 0 0 0.5rem;
+    font-size: 2rem;
+  }
+
+  .years,
+  .network {
+    opacity: 0.9;
+    margin: 0.25rem 0;
+  }
+
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: #ffc107;
+    margin: 0.5rem 0;
+  }
+}
+
+.content {
+  padding: 0 0.5rem 2rem;
+
+  .description {
+    margin: 1.5rem 0;
+    line-height: 1.7;
+  }
+
+  .starring,
+  .created-by {
+    margin: 0.5rem 0;
+    color: #555;
+  }
+}
