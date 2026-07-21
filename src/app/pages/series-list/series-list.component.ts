@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SeriesCardComponent } from '../../shared/components/series-card/series-card.component';
 import { SeriesService } from '../../services/series';
 
@@ -22,13 +23,14 @@ interface SortOption {
     MatIconModule,
     MatSelectModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
     SeriesCardComponent,
   ],
   templateUrl: './series-list.component.html',
   styleUrl: './series-list.component.scss',
 })
 export class SeriesListComponent {
-  private readonly seriesService = inject(SeriesService);
+  readonly seriesService = inject(SeriesService);
 
   searchQuery = signal('');
   currentSort = signal('rating_desc');

@@ -1,8 +1,13 @@
 <div class="detail-container">
-  @if (notFound()) {
+  @if (isLoading()) {
+    <div class="loading-container">
+      <mat-spinner diameter="50" />
+      <p>Loading series details...</p>
+    </div>
+  } @else if (notFound()) {
     <div class="not-found">
       <mat-icon>error_outline</mat-icon>
-      <p>Series not found.</p>
+      <p>{{ error() ?? 'Series not found.' }}</p>
       <a mat-raised-button color="primary" routerLink="/series">Back to list</a>
     </div>
   } @else if (series(); as s) {

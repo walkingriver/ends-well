@@ -4,6 +4,10 @@
     <p>Browse our curated collection of shows that stick the landing.</p>
   </header>
 
+  @if (seriesService.error()) {
+    <p class="error-banner" role="alert">{{ seriesService.error() }}</p>
+  }
+
   <div class="controls">
     <mat-form-field appearance="outline" class="search-field">
       <mat-label>Search series</mat-label>
@@ -26,23 +30,30 @@
     </mat-form-field>
   </div>
 
-  <div class="series-grid">
-    @for (item of paginatedSeries(); track item.id) {
-      <app-series-card [series]="item" />
-    } @empty {
-      <p class="empty-state">No series match "{{ searchQuery() }}".</p>
-    }
-  </div>
+  @if (seriesService.isLoading()) {
+    <div class="loading-container">
+      <mat-spinner diameter="50" />
+      <p>Loading series...</p>
+    </div>
+  } @else {
+    <div class="series-grid">
+      @for (item of paginatedSeries(); track item.id) {
+        <app-series-card [series]="item" />
+      } @empty {
+        <p class="empty-state">No series match "{{ searchQuery() }}".</p>
+      }
+    </div>
 
-  @if (sortedSeries().length > 0) {
-    <mat-paginator
-      [length]="sortedSeries().length"
-      [pageSize]="pageSize()"
-      [pageIndex]="pageIndex()"
-      [pageSizeOptions]="[3, 6, 12]"
-      (page)="onPageChange($event)"
-      showFirstLastButtons
-      aria-label="Select page"
-    />
+    @if (sortedSeries().length > 0) {
+      <mat-paginator
+        [length]="sortedSeries().length"
+        [pageSize]="pageSize()"
+        [pageIndex]="pageIndex()"
+        [pageSizeOptions]="[3, 6, 12]"
+        (page)="onPageChange($event)"
+        showFirstLastButtons
+        aria-label="Select page"
+      />
+    }
   }
 </div>
