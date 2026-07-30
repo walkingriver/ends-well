@@ -12,9 +12,6 @@
     "serve:prod": "ng serve --configuration production",
     "deploy": "npm run build && npx wrangler pages deploy dist/ends-well/browser --project-name=ends-well --branch=main"
   },
-  "engines": {
-    "node": ">=22.22.3"
-  },
   "dependencies": {
     "@angular/animations": "22.0.5",
     "@angular/cdk": "22.0.5",

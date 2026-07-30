@@ -6,7 +6,7 @@ Angular 22 · Angular Material · standalone components · optional TMDb integra
 
 ## Requirements
 
-- **Node.js** 22.22.3 or later (24.x works)
+- **Node.js** — current [LTS](https://nodejs.org/) release. Check [angular.dev](https://angular.dev) for supported Node and Angular versions for your project.
 - npm 10+
 
 ## Quick start
@@ -23,11 +23,16 @@ Open <http://localhost:4200>. The app runs on **mock data** by default.
 
 ## Teaching branches
 
+| Branch | When to use | You type commands? | PWA book chapters |
+|--------|-------------|--------------------|-------------------|
+| `ends-well-no-pwa` | Start; hosting; first Lighthouse baseline | Yes — `ng add @angular/pwa` in ch. 9 | 5–9 |
+| `ends-well-pwa` | After PWA schematic; offline shell | Checkout or stay on no-pwa if you ran `ng add` yourself | 10, 12–13 |
+| `ends-well-updates` | `dataGroups` + `SwUpdate` UI | Checkout or copy snippets from repo | 11, 15–16 |
+
+**Angular Apprentice** checkpoints (separate learning path):
+
 | Branch / tag | Use when |
 |--------------|----------|
-| `ends-well-no-pwa` | PWA book: before `ng add @angular/pwa` |
-| `ends-well-pwa` | PWA book: after adding PWA support |
-| `ends-well-updates` | PWA book: updates chapters (`SwUpdate` UI) |
 | **Angular Apprentice** | Build Ends Well from scratch; mock data default ch. 10–16; live TMDb ch. 17a–18; deploy ch. 21 (`npm run deploy`) |
 | `apprentice-ch08-end` … `apprentice-ch18-end` | Compare your work at the end of each Apprentice chapter |
 | `apprentice-ch21-end` | Production build deployed to Cloudflare Pages (code still `ends-well-no-pwa`) |
@@ -83,8 +88,16 @@ Output: `dist/ends-well/browser/`
 Test production locally:
 
 ```bash
+npm run serve:prod
+```
+
+Or:
+
+```bash
 npx http-server -p 8080 -c-1 dist/ends-well/browser
 ```
+
+`serve:prod` runs `ng serve --configuration production` (service worker enabled).
 
 Deploy to Cloudflare Pages:
 
