@@ -13,9 +13,6 @@
     "icons": "pwa-asset-generator src/assets/icons/icon-512x512.png src/assets/icons --icon-only --favicon -i src/index.html -m public/manifest.webmanifest",
     "splash": "pwa-asset-generator src/assets/icons/icon-512x512.png src/assets/splash --splash-only --background \"#f5f5f5\" -i src/index.html"
   },
-  "engines": {
-    "node": ">=22.22.3"
-  },
   "dependencies": {
     "@angular/animations": "22.0.5",
     "@angular/cdk": "22.0.5",
