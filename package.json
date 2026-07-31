@@ -10,7 +10,8 @@
     "watch": "ng build --watch --configuration development",
     "serve:prod": "ng serve --configuration production",
     "deploy": "npm run build && npx wrangler pages deploy dist/ends-well/browser --project-name=ends-well --branch=main",
-    "icons": "node scripts/generate-pwa-icons.mjs"
+    "icons": "node scripts/generate-pwa-icons.mjs",
+    "splash": "node scripts/generate-pwa-splash.mjs"
   },
   "dependencies": {
     "@angular/animations": "22.1.0",

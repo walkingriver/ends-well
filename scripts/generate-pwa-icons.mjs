@@ -52,10 +52,6 @@ async function patchIndexHtml() {
     /<link rel="apple-touch-icon"[^>]*>\s*/g,
     '',
   );
-  html = html.replace(
-    /<link rel="apple-touch-startup-image"[^>]*>\s*/g,
-    '',
-  );
 
   const iconTags = [
     '    <link rel="icon" type="image/png" sizes="196x196" href="assets/icons/favicon-196.png">',

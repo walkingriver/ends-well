@@ -108,6 +108,8 @@ npm run deploy
 ## Maintainer scripts
 
 ```bash
-./scripts/create-no-pwa-branch.sh   # strip PWA for ends-well-no-pwa
-node scripts/strip-update-ui.mjs    # remove SwUpdate UI for ends-well-pwa
+npm run icons                     # regenerate manifest + Apple icons from icon-source.svg
+npm run splash                    # regenerate iOS startup images + index.html links
+./scripts/create-no-pwa-branch.sh # strip PWA for ends-well-no-pwa
+node scripts/strip-update-ui.mjs  # remove SwUpdate UI for ends-well-pwa
 ```
