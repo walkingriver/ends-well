@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Ends Well">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5c6bc0"/>
+      <stop offset="100%" stop-color="#283593"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a237e"/>
+      <stop offset="100%" stop-color="#0d1642"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffd54f" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ffca28" stop-opacity="0.45"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="224" fill="url(#bg)"/>
+  <rect x="196" y="248" width="632" height="448" rx="56" fill="#ffffff" fill-opacity="0.96"/>
+  <rect x="236" y="288" width="552" height="368" rx="32" fill="url(#screen)"/>
+  <rect x="236" y="288" width="552" height="368" rx="32" fill="url(#glow)"/>
+  <path
+    d="M360 520c48-72 112-108 192-108 72 0 132 28 180 84"
+    fill="none"
+    stroke="#ffca28"
+    stroke-width="28"
+    stroke-linecap="round"
+  />
+  <path
+    d="M512 612 L448 548 L472 524 L512 564 L616 460 L640 484 Z"
+    fill="#ffca28"
+  />
+  <rect x="448" y="696" width="128" height="24" rx="12" fill="#ffffff" fill-opacity="0.9"/>
+  <rect x="392" y="736" width="240" height="20" rx="10" fill="#ffffff" fill-opacity="0.55"/>
+</svg>
